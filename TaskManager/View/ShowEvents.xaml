@@ -87,7 +87,7 @@
         <ListView x:Name="dataGrid" Margin="10" Grid.Row="2" Grid.RowSpan="12" Grid.ColumnSpan="3" FontSize="13" Background="AliceBlue">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid x:Name="Card" ShowGridLines ="false">
+                    <Grid x:Name="Card" ShowGridLines ="false" Background="{Binding Background}">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using TaskManager.View;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -16,9 +17,10 @@ namespace TaskManager
     public partial class ShowEvents : Page
     {
         NavigationService navService;
-        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb";
+        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb; Persist Security Info=True;Jet OLEDB:Database Password = 2182315Dimas";
         ObservableCollection<Event> Events = new ObservableCollection<Event>();
-        string typeTitle, kindTitle, doneTitle;
+        string typeTitle, kindTitle, doneTitle, backgroundColor = "#dddb8888";
+        Brush Brush;
         public ShowEvents()
         {
             InitializeComponent();
@@ -83,8 +85,18 @@ namespace TaskManager
                     doneTitle = "Не завершена";
                 }
 
+                if (DateTime.Now > Convert.ToDateTime(dr[5]) && Convert.ToBoolean(dr[11]) == false)
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 237, 178, 178));
+                }
+                else
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 200, 235, 175));
+                }
+
                 Events.Add(new Event
                 {
+                    Background = Brush,
                     Id = Convert.ToInt32(dr[0]),
                     Title = dr[1].ToString(),
                     TypeId = Convert.ToInt32(dr[2]),
@@ -95,7 +107,7 @@ namespace TaskManager
                     End = Convert.ToDateTime(dr[5].ToString()),
                     Done = Convert.ToBoolean(dr[11]),
                     DoneText = doneTitle,
-                    ReportID = Convert.ToInt32(dr[12])
+                    ReportID = Convert.ToInt32(dr[12]),
                 });
             }
             try
@@ -347,8 +359,18 @@ namespace TaskManager
                     doneTitle = "Не завершена";
                 }
 
+                if (DateTime.Now > Convert.ToDateTime(dr[5]) && Convert.ToBoolean(dr[11]) == false)
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 237, 178, 178));
+                }
+                else
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 200, 235, 175));
+                }
+
                 Events.Add(new Event
                 {
+                    Background = Brush,
                     Id = Convert.ToInt32(dr[0]),
                     Title = dr[1].ToString(),
                     TypeId = Convert.ToInt32(dr[2]),
@@ -452,8 +474,18 @@ namespace TaskManager
                     doneTitle = "Не завершена";
                 }
 
+                if (DateTime.Now > Convert.ToDateTime(dr[5]) && Convert.ToBoolean(dr[11]) == false)
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 237, 178, 178));
+                }
+                else
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 200, 235, 175));
+                }
+
                 Events.Add(new Event
                 {
+                    Background = Brush,
                     Id = Convert.ToInt32(dr[0]),
                     Title = dr[1].ToString(),
                     TypeId = Convert.ToInt32(dr[2]),
@@ -544,8 +576,18 @@ namespace TaskManager
                     doneTitle = "Не завершена";
                 }
 
+                if (DateTime.Now > Convert.ToDateTime(dr[5]) && Convert.ToBoolean(dr[11]) == false)
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 237, 178, 178));
+                }
+                else
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 200, 235, 175));
+                }
+
                 Events.Add(new Event
                 {
+                    Background = Brush,
                     Id = Convert.ToInt32(dr[0]),
                     Title = dr[1].ToString(),
                     TypeId = Convert.ToInt32(dr[2]),
@@ -653,14 +695,13 @@ namespace TaskManager
             try
             {
                 workbook.SaveAs(Filename: System.AppDomain.CurrentDomain.BaseDirectory + "exported.xlsx");
+                MessageBox.Show("Вы успешно экспортировали задачи! Ваш файл находится в корневой папке программы под названием exported.xlsx");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MessageBox.Show("Необходимо сохранить сформированный файл exported.xlsx");
             }
-           
-
-            MessageBox.Show("Вы успешно экспортировали задачи! Ваш файл находится в корневой папке программы под названием exported.xlsx");
         }
 
         private void button44_Click(object sender, RoutedEventArgs e)
@@ -717,8 +758,18 @@ namespace TaskManager
                     doneTitle = "Не завершена";
                 }
 
+                if (DateTime.Now > Convert.ToDateTime(dr[5]) && Convert.ToBoolean(dr[11]) == false)
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 237, 178, 178));
+                }
+                else
+                {
+                    Brush = new SolidColorBrush(Color.FromArgb(240, 200, 235, 175));
+                }
+
                 Events.Add(new Event
                 {
+                    Background = Brush,
                     Id = Convert.ToInt32(dr[0]),
                     Title = dr[1].ToString(),
                     TypeId = Convert.ToInt32(dr[2]),

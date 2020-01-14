@@ -13,7 +13,7 @@ namespace TaskManager
     public partial class AddEvent : Page
     {
         NavigationService navService;
-        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb";
+        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb; Persist Security Info=True;Jet OLEDB:Database Password = 2182315Dimas";
         int typeID, kindID, memberID;
         String memberName, memberSurname, memberPatronymic, memberPhone;
         //DateTime nearStartDate, nearEndDate;
@@ -354,16 +354,25 @@ namespace TaskManager
                 //}
                 //else
                 //{
-                dbConnection.Open();
+                
 
-                taskCommand.ExecuteNonQuery();
+                if(dateTimePicker1.Value > dateTimePicker.Value)
+                {
+                    dbConnection.Open();
 
-                MessageBox.Show("Вы успешно добавили задачу!");
+                    taskCommand.ExecuteNonQuery();
 
-                dbConnection.Close();
+                    MessageBox.Show("Вы успешно добавили задачу!");
 
-                navService = NavigationService.GetNavigationService(this);
-                navService.Navigate(new System.Uri("View/ShowEvents.xaml", UriKind.RelativeOrAbsolute));
+                    dbConnection.Close();
+
+                    navService = NavigationService.GetNavigationService(this);
+                    navService.Navigate(new System.Uri("View/ShowEvents.xaml", UriKind.RelativeOrAbsolute));
+                }
+                else
+                {
+                    MessageBox.Show("Вы не можете закончить задачу раньше ее начала!");
+                }
                 //}
             }
             catch (Exception ex)

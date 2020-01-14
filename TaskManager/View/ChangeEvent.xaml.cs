@@ -13,7 +13,7 @@ namespace TaskManager
     public partial class ChangeEvent : Page
     {
         NavigationService navService;
-        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb";
+        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb; Persist Security Info=True;Jet OLEDB:Database Password = 2182315Dimas";
         int typeID, kindID;
         int member1, member2, member3;
         String memberName, memberSurname, memberPatronymic, memberPhone;
@@ -197,16 +197,23 @@ namespace TaskManager
                 //}
                 //else
                 //{
-                dbConnection.Open();
+                if (dateTimePicker1.Value > dateTimePicker.Value)
+                {
+                    dbConnection.Open();
 
-                taskCommand.ExecuteNonQuery();
+                    taskCommand.ExecuteNonQuery();
 
-                MessageBox.Show("Вы успешно обновили задачу!");
+                    MessageBox.Show("Вы успешно обновили задачу!");
 
-                dbConnection.Close();
+                    dbConnection.Close();
 
-                navService = NavigationService.GetNavigationService(this);
-                navService.Navigate(new System.Uri("View/ShowEvents.xaml", UriKind.RelativeOrAbsolute));
+                    navService = NavigationService.GetNavigationService(this);
+                    navService.Navigate(new System.Uri("View/ShowEvents.xaml", UriKind.RelativeOrAbsolute));
+                }
+                else
+                {
+                    MessageBox.Show("Вы не можете закончить задачу раньше ее начала!");
+                }
                 //}
             }
             catch (Exception erx)

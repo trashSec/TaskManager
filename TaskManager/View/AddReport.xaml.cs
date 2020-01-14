@@ -16,7 +16,7 @@ namespace TaskManager
     public partial class AddReport : Page
     {
         NavigationService navService;
-        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb";
+        string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\TaskManager.mdb; Persist Security Info=True;Jet OLEDB:Database Password = 2182315Dimas";
         int typeID, kindID;
         int member1, member2, member3;
         String memberName, memberSurname, memberPatronymic, memberPhone;

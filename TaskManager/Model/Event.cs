@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace TaskManager
 {
@@ -17,6 +19,7 @@ namespace TaskManager
         public Boolean Done { get; set; }
         public int ReportID { get; set; }
         public String DoneText { get; set; }
+        public Brush Background { get; set; }
         public static int oldId { get; set; }
         public static string oldTitle { get; set; }
         public static string DayStart { get; set; }

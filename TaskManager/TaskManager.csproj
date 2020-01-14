@@ -118,11 +118,6 @@
     <Compile Include="View\ShowEvents.xaml.cs">
       <DependentUpon>ShowEvents.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TaskManagerDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TaskManagerDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Model\Type.cs" />
     <Compile Include="View\ShowReport.xaml.cs">
       <DependentUpon>ShowReport.xaml</DependentUpon>
@@ -186,17 +181,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="TaskManagerDataSet.xsc">
-      <DependentUpon>TaskManagerDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TaskManagerDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TaskManagerDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TaskManagerDataSet.xss">
-      <DependentUpon>TaskManagerDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
