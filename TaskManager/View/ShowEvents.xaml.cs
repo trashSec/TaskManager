@@ -650,7 +650,15 @@ namespace TaskManager
                 worksheet.Cells[i, 8].Value = Events[i - 2].DoneText;
             }
 
-            workbook.SaveAs(Filename: System.AppDomain.CurrentDomain.BaseDirectory + "exported.xlsx");
+            try
+            {
+                workbook.SaveAs(Filename: System.AppDomain.CurrentDomain.BaseDirectory + "exported.xlsx");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
 
             MessageBox.Show("Вы успешно экспортировали задачи! Ваш файл находится в корневой папке программы под названием exported.xlsx");
         }
