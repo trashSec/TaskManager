@@ -14,11 +14,11 @@ namespace TaskManager.View
         public AboutBox()
         {
             InitializeComponent();
-            this.Text = String.Format("О программе {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
+            this.Text = String.Format("О программе Планировщик задач");
+            this.labelProductName.Text = "Планировщик задач";
             this.labelVersion.Text = String.Format("Версия {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
+            this.labelCopyright.Text = "Авторские права";
+            this.labelCompanyName.Text = "Тращенко Д.С. ПО-41";
             this.textBoxDescription.Text = "Программный продукт предназначен для контроля ежедневных задач, " +
                 "планирования мероприятий, создания плана встреч и вывода информации в виде отчета о выполненных задачах " +
                 "или прошедших мероприятиях для заведующего отделения колледжа."
