@@ -670,26 +670,49 @@ namespace TaskManager
 
             worksheet = (Excel.Worksheet)workbook.Sheets[1];
             worksheet.Name = "Мероприятия";
-            worksheet.Cells[1, 1].Value = "Название задачи";
-            worksheet.Cells[1, 2].Value = "Тип задачи";
-            worksheet.Cells[1, 3].Value = "Вид задачи";
-            worksheet.Cells[1, 4].Value = "Начало задачи";
-            worksheet.Cells[1, 5].Value = "Окончание задачи";
-            worksheet.Cells[1, 6].Value = "Описание задачи";
-            worksheet.Cells[1, 7].Value = "Место проведения задачи";
-            worksheet.Cells[1, 8].Value = "Статус";
+            worksheet.StandardWidth = 25;
 
-
-            for (int i = 2; i <= Events.Count + 1; i++)
+            for (int i = 1; i < 9; i++)
             {
-                worksheet.Cells[i, 1].Value = Events[i - 2].Title;
-                worksheet.Cells[i, 2].Value = Events[i - 2].TypeTitle;
-                worksheet.Cells[i, 3].Value = Events[i - 2].KindTitle;
-                worksheet.Cells[i, 4].Value = Events[i - 2].Start;
-                worksheet.Cells[i, 5].Value = Events[i - 2].End;
-                worksheet.Cells[i, 6].Value = Events[i - 2].Description;
-                worksheet.Cells[i, 7].Value = Events[i - 2].Location;
-                worksheet.Cells[i, 8].Value = Events[i - 2].DoneText;
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideVertical].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // внутренние вертикальные
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideHorizontal].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // внутренние горизонтальные            
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // верхняя внешняя
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // правая внешняя
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // левая внешняя
+                worksheet.Cells[2, i].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+            }
+
+            worksheet.Cells[1, 1].Value = "Список задач по состоянию на " + DateTime.Now.ToString();
+
+            worksheet.Cells[2, 1].Value = "Название задачи";
+            worksheet.Cells[2, 2].Value = "Тип задачи";
+            worksheet.Cells[2, 3].Value = "Вид задачи";
+            worksheet.Cells[2, 4].Value = "Начало задачи";
+            worksheet.Cells[2, 5].Value = "Окончание задачи";
+            worksheet.Cells[2, 6].Value = "Описание задачи";
+            worksheet.Cells[2, 7].Value = "Место проведения задачи";
+            worksheet.Cells[2, 8].Value = "Статус";
+
+
+            for (int i = 3; i <= Events.Count + 2; i++)
+            {
+                for (int y = 1; y < 9; y++)
+                {
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideVertical].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // внутренние вертикальные
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlInsideHorizontal].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // внутренние горизонтальные            
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // верхняя внешняя
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // правая внешняя
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous; // левая внешняя
+                    worksheet.Cells[i, y].Borders[Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom].LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                }
+                worksheet.Cells[i, 1].Value = Events[i - 3].Title;
+                worksheet.Cells[i, 2].Value = Events[i - 3].TypeTitle;
+                worksheet.Cells[i, 3].Value = Events[i - 3].KindTitle;
+                worksheet.Cells[i, 4].Value = Events[i - 3].Start;
+                worksheet.Cells[i, 5].Value = Events[i - 3].End;
+                worksheet.Cells[i, 6].Value = Events[i - 3].Description;
+                worksheet.Cells[i, 7].Value = Events[i - 3].Location;
+                worksheet.Cells[i, 8].Value = Events[i - 3].DoneText;
             }
 
             try

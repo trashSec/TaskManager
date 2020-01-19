@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace TaskManager.View
@@ -146,29 +135,37 @@ namespace TaskManager.View
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Word.Application application = new Word.Application();
-            application.Visible = true;
-            Word.Document document = application.Documents.Open(System.AppDomain.CurrentDomain.BaseDirectory + @"\report.dotx");
+            try
+            {
+                Word.Application application = new Word.Application();
+                application.Visible = true;
+                Word.Document document = application.Documents.Open(System.AppDomain.CurrentDomain.BaseDirectory + @"\report.dotx");
 
-            document.Bookmarks["Title"].Range.Text = label3.Content.ToString();
-            document.Bookmarks["Type"].Range.Text = label4.Content.ToString();
-            document.Bookmarks["Kind"].Range.Text = label5.Content.ToString();
-            document.Bookmarks["Start"].Range.Text = label6.Content.ToString();
-            document.Bookmarks["End"].Range.Text = label7.Content.ToString();
-            document.Bookmarks["Desc"].Range.Text = label8.Content.ToString();
-            document.Bookmarks["Loc"].Range.Text = label9.Content.ToString();
-            document.Bookmarks["Memb1Name"].Range.Text = label13.Content.ToString();
-            document.Bookmarks["Memb1Phone"].Range.Text = label13_Copy.Content.ToString();
-            document.Bookmarks["Memb2Name"].Range.Text = label13_Copy1.Content.ToString();
-            document.Bookmarks["Memb2Phone"].Range.Text = label13_Copy2.Content.ToString();
-            document.Bookmarks["Memb3Name"].Range.Text = label13_Copy3.Content.ToString();
-            document.Bookmarks["Memb3Phone"].Range.Text = label13_Copy4.Content.ToString();
+                document.Bookmarks["Name"].Range.Text = ("Отчет по задаче  '" + label3.Content.ToString() + "'");
+                document.Bookmarks["Title"].Range.Text = label3.Content.ToString();
+                document.Bookmarks["Type"].Range.Text = label4.Content.ToString();
+                document.Bookmarks["Kind"].Range.Text = label5.Content.ToString();
+                document.Bookmarks["Start"].Range.Text = label6.Content.ToString();
+                document.Bookmarks["End"].Range.Text = label7.Content.ToString();
+                document.Bookmarks["Desc"].Range.Text = label8.Content.ToString();
+                document.Bookmarks["Loc"].Range.Text = label9.Content.ToString();
+                document.Bookmarks["Memb1Name"].Range.Text = label13.Content.ToString();
+                document.Bookmarks["Memb1Phone"].Range.Text = label13_Copy.Content.ToString();
+                document.Bookmarks["Memb2Name"].Range.Text = label13_Copy1.Content.ToString();
+                document.Bookmarks["Memb2Phone"].Range.Text = label13_Copy2.Content.ToString();
+                document.Bookmarks["Memb3Name"].Range.Text = label13_Copy3.Content.ToString();
+                document.Bookmarks["Memb3Phone"].Range.Text = label13_Copy4.Content.ToString();
 
-            document.SaveAs2(FileName: System.AppDomain.CurrentDomain.BaseDirectory + Event.DayStart.ToString() + @"\" + Event.oldTitle.ToString() + @"\" + "Отчет.dotx");
-            //document.Close();
-            //application.Quit();
+                document.SaveAs2(FileName: System.AppDomain.CurrentDomain.BaseDirectory + Event.DayStart.ToString() + @"\" + Event.oldTitle.ToString() + @"\" + "Отчет.dotx");
+                //document.Close();
+                //application.Quit();
 
-            MessageBox.Show("Ваш отчет успешно создан и находится в папке " + Event.DayStart.ToString() + @"\" + Event.oldTitle.ToString());
+                MessageBox.Show("Ваш отчет успешно создан и находится в папке " + Event.DayStart.ToString() + @"\" + Event.oldTitle.ToString());
+            }
+            catch
+            {
+                MessageBox.Show("Шаблон документа не найден!");
+            }
         }
     }
 }
